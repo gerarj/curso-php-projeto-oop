@@ -3,25 +3,50 @@
 /**
  * Class de Clientes
  */
+require_once('ClienteClassificacaoInterface.php');
 
-class Cliente{
-
-
-	private $id;
-
-	private $nome;
-
-	private $cpf;
-
-	private $endereco;
+class Cliente implements ClienteClassificacaoInterface{
 
 
-	public function __construct($id,$nome,$cpf,$endereco)
+	protected $id;
+
+	protected $nome;
+
+	protected $endereco;
+
+	protected $type;
+
+	protected $document;
+
+	protected $documentType;
+
+	protected $classificacao;
+
+	protected $endereco_cobranca;
+
+
+	public function __construct($id,$nome,$document,$endereco,$classificacao)
 	{
 		$this->id = $id;
 		$this->nome = $nome;
-		$this->cpf = $cpf;
 		$this->endereco = $endereco;
+		$this->endereco_cobranca = $endereco;
+		$this->document = $document;
+		$this->classificacao = $classificacao;
+
+		return $this;
+	}	
+
+
+	public function setClassificacao($value)
+	{
+		$this->classificacao = (int) $value;
+		return $this;
+	}
+
+	public function getClassificacao()
+	{
+		return $this->classificacao;
 	}
 
 
@@ -35,16 +60,43 @@ class Cliente{
 		return $this->nome;
 	}
 
-
-	public function getCpf()
-	{
-		return $this->cpf;
-	}
-
 	public function getEndereco()
 	{
 		return $this->endereco;
 	}
+
+	public function setDocument($value)
+	{
+		$this->document = $value;
+		return $this;
+	}
+
+	public function getDocument()
+	{
+		return $this->document;
+	}
+
+	public function getDocumentType()
+	{
+		return $this->documentType;
+	}
+
+	public function getType()
+	{
+		return $this->type;
+	}
+
+	public function setEnderecoCobranca($value)
+	{
+		$this->endereco_cobranca = $value;
+		return $this;
+	}
+
+	public function getEnderecoCobranca()
+	{
+		return $this->endereco_cobranca;
+	}
+
 
 
 
